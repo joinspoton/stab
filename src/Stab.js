@@ -1,9 +1,9 @@
 // @flow
 
 import {
-    hash,
     generateUserToken,
-    tryLoadUserToken
+    tryLoadUserToken,
+    getFraction
 } from './Util';
 
 class Stab {
@@ -12,40 +12,49 @@ class Stab {
     _userToken = tryLoadUserToken() || generateUserToken();
 
     configure(config) {
+        this._config = config;
 
+        this._calculateGroups();
+    }
+
+    _calculateGroups() {
+        this._groups = {};
+
+        Object.keys(this._config).forEach((testName: string) => {
+            this._groups[testName] = this._calculateGroup(testName);
+        });
     }
 
     _calculateGroup(testName: string): number {
-        const fraction = hash(this._userToken + testName);
-        const distribution = config[testName] || [1];
-    }
+        let fraction = getFraction(this._userToken + testName);
+        const distribution = this._config[testName] || [1];
+        const total = distribution.reduce((a, b) => a + b, 0);
 
-    _getGroupFrom
+        for (var i = 0; i < distribution.length; i++) {
+            const part = distribution[i] / total;
 
-    configure(config) {
+            fraction -= part;
 
+            if (fraction <= 0) return i;
+        }
+
+        throw new Error();
     }
 
     groupA(testName: string): boolean {
-        return Stab.groupNum(testName) === 1;
+        return this.groupNum(testName) === 1;
     }
 
     groupB(testName: string): boolean {
-        return Stab.groupNum(testName) === 2;
+        return this.groupNum(testName) === 2;
     }
 
     groupNum(testName: string): number {
-        return 1; // TODO
+        return this._groups[testName] || 0;
     }
 
-    getGroups(): [testName: string]: string {
-        const result = {};
-
-        for (var testName in config) {
-            if (result.hasOwnProperty(testName)) {
-                result[testName] = Stab.groupNum(testName);
-            }
-        }
+    getGroups(): {[string]: string} {
+        return this._groups;
     }
 }
 

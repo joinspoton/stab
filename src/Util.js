@@ -1,6 +1,7 @@
 // @flow
 
 const USER_TOKEN_KEY = 'abUserToken';
+const FRACTION_MODULO = 0xFFFF;
 
 export function hash(str: string): number {
     // http://www.cse.yorku.ca/~oz/hash.html
@@ -16,8 +17,21 @@ export function hash(str: string): number {
     return hash;
 }
 
+/**
+ * Return a pseudo-random number in the range [0, 1)
+ * 
+ * @export
+ * @param {string} str 
+ * @returns {number} 
+ */
+export function getFraction(str: string): number {
+    const absHash = Math.abs(hash(str));
+
+    return (absHash % FRACTION_MODULO) / FRACTION_MODULO;
+}
+
 export function generateUserToken(): string {
-    return 'TODO';
+    return String(Math.random());
 }
 
 export function tryLoadUserToken(): ?string {
