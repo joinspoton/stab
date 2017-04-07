@@ -5,7 +5,7 @@ import Stab from '../Stab';
 const TEST_RUNS = 10000;
 const ERROR_MARGIN = 0.05;
 
-describe('Configure tests', () => {
+describe('Stab', () => {
     test('Loads with empty config', () => {
         const stab = new Stab({});
     });
