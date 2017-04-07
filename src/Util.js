@@ -45,3 +45,11 @@ export function tryLoadUserToken(): ?string {
 
     return result;
 }
+
+export function trySaveUserToken(token: string) {
+    try {
+        localStorage.setItem(USER_TOKEN_KEY, token);
+    } catch (e) {
+        // silently fail if local storage doesn't work
+    }
+}

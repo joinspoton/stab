@@ -3,18 +3,23 @@
 import {
     generateUserToken,
     tryLoadUserToken,
-    getFraction
+    getFraction,
+    trySaveUserToken
 } from './Util';
 
+const DEFAULT_GROUP_NUM = 1;
+
 class Stab {
-    _config = {};
+    _config: {[string]: Array<number>};
     _groups = {};
     _userToken = tryLoadUserToken() || generateUserToken();
 
-    configure(config) {
+    constructor(config: {[string]: Array<number>}) {
         this._config = config;
 
         this._calculateGroups();
+
+        trySaveUserToken(this._userToken);
     }
 
     _calculateGroups() {
@@ -29,16 +34,19 @@ class Stab {
         let fraction = getFraction(this._userToken + testName);
         const distribution = this._config[testName] || [1];
         const total = distribution.reduce((a, b) => a + b, 0);
+        let result;
 
-        for (var i = 0; i < distribution.length; i++) {
+        for (var i = 0; i < distribution.length && !result; i++) {
             const part = distribution[i] / total;
 
             fraction -= part;
 
-            if (fraction <= 0) return i;
+            if (fraction < 0) {
+                result = i + 1;
+            }
         }
 
-        throw new Error();
+        return result || DEFAULT_GROUP_NUM;
     }
 
     groupA(testName: string): boolean {
@@ -50,7 +58,7 @@ class Stab {
     }
 
     groupNum(testName: string): number {
-        return this._groups[testName] || 0;
+        return this._groups[testName] || DEFAULT_GROUP_NUM;
     }
 
     getGroups(): {[string]: string} {

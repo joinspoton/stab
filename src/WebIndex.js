@@ -1,3 +1,7 @@
 import Stab from './Stab';
 
-export default new Stab();
+// TODO: better error handling
+const el = document.getElementById('ab-testing-json');
+const groups = JSON.parse(el.innerHTML);
+
+export default new Stab(groups.abTests);
