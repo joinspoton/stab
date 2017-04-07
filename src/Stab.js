@@ -9,6 +9,8 @@ import {
 
 const DEFAULT_GROUP_NUM = 1;
 
+const getGroupKey = (testName: string) => `test_${testName}`;
+
 class Stab {
     _config: {[string]: Array<number>};
     _groups = {};
@@ -26,7 +28,7 @@ class Stab {
         this._groups = {};
 
         Object.keys(this._config).forEach((testName: string) => {
-            this._groups[testName] = this._calculateGroup(testName);
+            this._groups[getGroupKey(testName)] = this._calculateGroup(testName);
         });
     }
 
@@ -58,7 +60,7 @@ class Stab {
     }
 
     groupNum(testName: string): number {
-        return this._groups[testName] || DEFAULT_GROUP_NUM;
+        return this._groups[getGroupKey(testName)] || DEFAULT_GROUP_NUM;
     }
 
     getGroups(): {[string]: string} {

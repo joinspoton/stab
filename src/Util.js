@@ -53,3 +53,7 @@ export function trySaveUserToken(token: string) {
         // silently fail if local storage doesn't work
     }
 }
+
+export function error(message: string) {
+    console.error(`Stab: ${message}`);
+}

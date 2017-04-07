@@ -16,8 +16,8 @@ describe('Configure tests', () => {
             bar: [1]
         }).getGroups();
 
-        expect(groups).toHaveProperty('foo');
-        expect(groups).toHaveProperty('bar');
+        expect(groups).toHaveProperty('test_foo');
+        expect(groups).toHaveProperty('test_bar');
     });
 
     test('Picks correct bucket for deterministic test groups', () => {
@@ -30,9 +30,9 @@ describe('Configure tests', () => {
             const groups = stab.getGroups();
 
             expect(groups).toEqual({
-                alwaysA: 1,
-                alwaysB: 2,
-                alwaysC: 3
+                test_alwaysA: 1,
+                test_alwaysB: 2,
+                test_alwaysC: 3
             });
         }
     });

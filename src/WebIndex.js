@@ -1,10 +1,21 @@
 import Stab from './Stab';
+import {error} from './Util';
 
 const el = document.getElementById('ab-testing-json');
-let groups = {};
+let json = {};
 
 if (el) {
-    groups = JSON.parse(el.innerHTML);
+    json = JSON.parse(el.innerHTML);
+} else {
+    error('Error parsing JSON');
 }
 
-export default new Stab(groups.abTests);
+const stab = new Stab(json.abTests || {});
+
+if (typeof mixpanel !== 'undefined') {
+    mixpanel.register_once(stab.getGroups());
+} else {
+    error('Mixpanel not found');
+}
+
+export default stab;
