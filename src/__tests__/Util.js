@@ -1,9 +1,9 @@
 import {error} from '../Util';
 
 test('error()', () => {
-    global.console = {error: jest.fn()};
+  global.console = {error: jest.fn()};
 
-    error('boo!');
+  error('boo!');
 
-    expect(global.console.error).toBeCalled();
+  expect(global.console.error).toBeCalled();
 });
