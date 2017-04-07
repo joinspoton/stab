@@ -4,7 +4,8 @@
   "description": "Components for Stanza Cal integration",
   "main": "lib/index.js",
   "scripts": {
-    "start": "yarn && webpack"
+    "start": "yarn && webpack",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
