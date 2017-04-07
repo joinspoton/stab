@@ -2,17 +2,17 @@ import Stab from './Stab';
 import {error} from './Util';
 
 declare var mixpanel: any;
+declare var __SITEVARS__: any;
 
-const el = document.getElementById('ab-testing-json');
-let json = {};
+let groups = {};
 
-if (el) {
-  json = JSON.parse(el.innerHTML);
+if (typeof __SITEVARS__ !== 'undefined' && __SITEVARS__.abTests) {
+  groups = __SITEVARS__.abTests;
 } else {
-  error('Error parsing JSON');
+  error('Test groups not found');
 }
 
-const stab = new Stab(json.abTests || {});
+const stab = new Stab(groups);
 
 if (typeof mixpanel !== 'undefined') {
   mixpanel.register_once(stab.getGroups());
