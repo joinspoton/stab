@@ -81,8 +81,6 @@ describe('Stab', () => {
 
             if (stab.groupB('fiftyFifty')) fiftyFiftyHits += 1;
             if (stab.groupA('quarter')) quarterHits += 1;
-
-            //expect([2, 3]).toConain(stab.groupNum('fiftyFifty'));
         }
 
         const fiftyFiftyRate = fiftyFiftyHits / TEST_RUNS;
