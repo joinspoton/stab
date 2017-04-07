@@ -1,6 +1,8 @@
 import Stab from './Stab';
 import {error} from './Util';
 
+declare var mixpanel: any;
+
 const el = document.getElementById('ab-testing-json');
 let json = {};
 

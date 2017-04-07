@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "yarn && webpack",
-    "test": "jest"
+    "test": "jest && eslint src"
   },
   "repository": {
     "type": "git",

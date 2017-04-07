@@ -1,0 +1,102 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "flowtype"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "curly": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-console": 1,
+    "indent": [2, 2],
+    "linebreak-style": [2, "unix"],
+    "quotes": [0, "single"],
+    "semi": [2, "always"],
+    "max-len": [0, 80],
+    "no-unused-vars": ["error", {
+      "caughtErrors": "none"
+    }],
+    "eqeqeq": [2, "smart"],
+    "flowtype/boolean-style": [
+      2,
+      "boolean"
+    ],
+    "flowtype/define-flow-type": 1,
+    "flowtype/delimiter-dangle": [
+      2,
+      "never"
+    ],
+    "flowtype/generic-spacing": [
+      2,
+      "never"
+    ],
+    "flowtype/no-primitive-constructor-types": 2,
+    "flowtype/no-weak-types": 1,
+    "flowtype/object-type-delimiter": [
+      2,
+      "comma"
+    ],
+    "flowtype/require-parameter-type": [
+      2,
+      {
+        "excludeArrowFunctions": "expressionsOnly"
+      }
+    ],
+    "flowtype/require-return-type": [
+      2,
+      "always",
+      {
+        "excludeArrowFunctions": "expressionsOnly",
+        "annotateUndefined": "never"
+      }
+    ],
+    "flowtype/require-valid-file-annotation": 2,
+    "flowtype/semi": [
+      2,
+      "always"
+    ],
+    "flowtype/space-after-type-colon": [
+      2,
+      "always"
+    ],
+    "flowtype/space-before-generic-bracket": [
+      2,
+      "never"
+    ],
+    "flowtype/space-before-type-colon": [
+      2,
+      "never"
+    ],
+    "flowtype/type-id-match": [
+      2,
+      "^([A-Z][a-z0-9]+)+Type$"
+    ],
+    "flowtype/union-intersection-spacing": [
+      2,
+      "always"
+    ],
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1
+  },
+  "globals": {
+    "expect": true,
+    "before": true,
+    "config": true,
+    "describe": true,
+    "test": true
+  }
+}

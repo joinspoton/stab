@@ -7,7 +7,7 @@ const ERROR_MARGIN = 0.05;
 
 describe('Stab', () => {
   test('Loads with empty config', () => {
-    const stab = new Stab({});
+    new Stab({});
   });
 
   test('Picks up test names from config', () => {
