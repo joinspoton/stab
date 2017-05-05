@@ -1,6 +1,6 @@
 {
   "name": "stanza-ab",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Stanza AB testing library",
   "main": "lib/index.js",
   "scripts": {
