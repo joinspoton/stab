@@ -21,7 +21,7 @@
     "write-file-webpack-plugin": "^4.0.0"
   },
   "engines": {
-    "node": "~8.11.3"
+    "node": "10.18.0"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
